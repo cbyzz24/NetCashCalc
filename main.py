@@ -14,6 +14,8 @@ with col1:
     capital_one_amount=st.text_input("Capital One", placeholder="0.00")
 
     initial_cash_total=st.text_input("Total Initial Cash Balance", placeholder="0.00")
+
+    initial_cash_button=st.button(":green[Initial Cash Total]")
     st.container(height=68, border=False)
     st.write("---")
     
@@ -32,6 +34,7 @@ with col2:
     trans3_title=st.text_input("Transaction 3", placeholder="Enter Amount")
     #trans4_title=st.text_input("Transaction 4", placeholder="Enter Amount")
     pending_trans_total=st.text_input("Total Pending Transactions", placeholder="0.00")
+    pending_trans_button=st.button(":orange[Pending Transactions Total]")
     st.write("---")
 
     #net cash section
