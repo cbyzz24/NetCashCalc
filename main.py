@@ -1,47 +1,60 @@
 import streamlit as st
+#import math
+
 
 #title section
 main_title=st.header(":blue[Net Cash Calculator] :chart_with_upwards_trend:", divider="rainbow")
 #st.container(height=1,border=False)
 
-col1, col2 =st.columns(2, gap="large")
+#Account Balance Section
+st.write("#### Current Account Balances")
+col1, col2, col3 = st.columns(3, gap="large")
+chase_balance = col1.number_input("Chase")
+captial_one_balance = col2.number_input("Capital One")
+calc_total_cash_balance = chase_balance + captial_one_balance
+display_total_cash_balance = col3.metric(label=":green[Total Initial Cash]", value=f"${calc_total_cash_balance:,.2f}")
+
+st.write("---")
+
+#Pending Tranactions Section
+st.write("#### Pending Transactions")
+col1, col2 = st.columns(2, gap="large")
 with col1:
-#account section
-    accts_title=st.subheader(":green[Cash Account Balances]")
-
-    chase_amount=st.text_input("Chase Bank", placeholder="0.00")
-
-    capital_one_amount=st.text_input("Capital One", placeholder="0.00")
-
-    initial_cash_total=st.text_input("Total Initial Cash Balance", placeholder="0.00")
-
-    initial_cash_button=st.button(":green[Initial Cash Total]")
-    st.container(height=68, border=False)
-    st.write("---")
-    
-    #bills section
-    bills_title=st.subheader(":red[Bills]")
-    total_bills=st.text_input("Total Bill Amount", placeholder="0.00")
-
-
-#st.write("---")
-
+    amount_1 = st.number_input("Amount 1")
+    amount_2 = st.number_input("Amount 2")
+    amount_3 = st.number_input("Amount 3")
 with col2:
-    #pending transactions section
-    pending_section_title=st.subheader(":orange[Pending Transactions]")
-    trans1_title=st.text_input("Transaction 1", placeholder="Enter Amount")
-    trans2_title=st.text_input("Transaction 2", placeholder="Enter Amount")
-    trans3_title=st.text_input("Transaction 3", placeholder="Enter Amount")
-    #trans4_title=st.text_input("Transaction 4", placeholder="Enter Amount")
-    pending_trans_total=st.text_input("Total Pending Transactions", placeholder="0.00")
-    pending_trans_button=st.button(":orange[Pending Transactions Total]")
-    st.write("---")
+    amount_4 = st.number_input("Amount 4")
+    amount_5 = st.number_input("Amount 5")
+    amount_6 = st.number_input("Amount 6")
 
-    #net cash section
-    net_cash_title=st.subheader(":rainbow[Net Cash]")
-    total_net_cash=st.text_input(":blue[Total Net Cash]", placeholder="0.00")
-    calc_button=st.button(":green[Calculate Cash]")
+calc_total_pending_transactions = amount_1 + amount_2 + amount_3 + amount_4 + amount_5 + amount_6
 
+col1, col2 = st.columns(2, gap="large")
+with col1:
+    st.text("")
+with col2:
+    display_total_pending_transactions = col2.metric(label=":red[Total Pending Transactions]", value=f"${calc_total_pending_transactions:,.2f}")
 
+st.write("---")
 
+# Upcoming Bills Section 
+st.write("#### Upcoming Bills")
+col1, col2 = st.columns(2, gap="large")
+with col1:
+    total_upcomming_bills = st.number_input("Total Upcoming Bills")
+calc_total_upcoming_bills = total_upcomming_bills
+with col2:
+    display_total_upcoming_bills = col2.metric(label=":orange[Total Bills]", value=f"${calc_total_upcoming_bills:,.2f}")
 
+st.write("---")
+
+# Net Cash Section
+st.write("#### Remaining Cash")
+col1, col2 = st.columns(2, gap="large")
+with col1:
+    st.write("")
+positive_flows = chase_balance + captial_one_balance
+negative_flows = amount_1 + amount_2 + amount_3 + amount_4 + amount_5 + amount_6 + total_upcomming_bills
+with col2:
+    display_net_cash = col2.metric(label=":green[Net Cash]", value=f"${positive_flows - negative_flows:,.2f}")
