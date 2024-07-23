@@ -3,7 +3,7 @@ import streamlit as st
 
 
 #title section
-main_title=st.header(":blue[Net Cash Calculator] :chart_with_upwards_trend:", divider="rainbow")
+main_title=st.header(":blue[Cash Calculator] :chart_with_upwards_trend:", divider="rainbow")
 #st.container(height=1,border=False)
 
 #Account Balance Section
